@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import EventCard from "@/components/EventCard";
 
@@ -70,4 +70,13 @@ const EventsPage = () => {
   );
 };
 
-export default EventsPage;
+// Wrap the page inside Suspense
+const EventsPageWrapper = () => {
+  return (
+    <Suspense fallback={<p className="text-center text-xl">Loading...</p>}>
+      <EventsPage />
+    </Suspense>
+  );
+};
+
+export default EventsPageWrapper;
